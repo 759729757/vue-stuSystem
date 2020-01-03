@@ -1,15 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+//普通客户端
+import routes from './client'
+import routers_admin from './admin'
 
-Vue.use(Router)
+import VueRouter from 'vue-router'
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+export default new VueRouter({
+  routes:[...routers_admin,...routes]
 })
+
+
+
