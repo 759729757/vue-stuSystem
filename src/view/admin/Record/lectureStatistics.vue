@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <!--工具条-->
-    <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+    <el-header :span="24" class="toolbar" style="padding-bottom: 0px;">
       <el-form :inline="true" :model="filter">
         <el-form-item>
           <el-input v-model="filter.name" placeholder="姓名"></el-input>
@@ -32,8 +32,28 @@
           <el-button type="primary" v-on:click="fetch">查询</el-button>
         </el-form-item>
       </el-form>
-    </el-col>
+    </el-header>
 
+    <!--列表-->
+    <el-main>
+      <el-table :data="users" highlight-current-row v-loading="loading" height="80vh" stripe>
+        <el-table-column type="index" width="60">				</el-table-column>
+
+        <el-table-column prop="name" label="姓名" width="100" sortable>			</el-table-column>
+
+        <el-table-column prop="stuNum" label="学号" width="150"  sortable>				</el-table-column>
+
+        <el-table-column prop="grade" label="年级" width="100" sortable>				</el-table-column>
+
+        <el-table-column prop="major" label="专业" width="250" sortable>        </el-table-column>
+
+        <el-table-column prop="guojiTimes" label="国际设计与创新趋势" width="150" sortable>        </el-table-column>
+
+        <el-table-column prop="alltimes" label="就业指导" width="150" sortable>        </el-table-column>
+
+
+      </el-table>
+    </el-main>
 
 
   </el-container>
@@ -48,8 +68,9 @@
     data(){
       return{
         filter: {
-          name: '',page:0,
+          name: '陈',page:0,grade:'2019'
         },
+        loading:false,
         count:0,
         users:[],
         restaurantsMajor:[{value:'中德合作办学项目'}],//专业内容提示
@@ -73,10 +94,43 @@
           console.log(res)
           this.loading = false;
           this.count = res.data.count;
-          this.users = res.data.users;
+          // this.users = res.data.users;
+          let {users} = res.data;
 
+          let page=0;const limit = 20;
+
+          for(var i=0;i<users.length;i++){
+            this.acount(users[i]);
+          }
         })
       },
+      acount:function (stu) {
+        let alltimes = 0,jiuyeTimes = 0,guojiTimes =0;
+        oldLecture({stuNum:stu.stuNum}).then(res =>{
+          alltimes = res.data.times;
+          jiuyeTimes = jiuyeTimes + res.data.times;
+          lecture({stuNum:stu.stuNum}).then(res=>{
+            let { lecture } = res.data
+            if(lecture.length){
+              for(var j=0;j<lecture.length;j++){
+                if(lecture[j].lecture.indexOf('【就业指导】') != -1){
+                  jiuyeTimes++;
+                }else {
+                  guojiTimes++;
+                }
+              }
+            }
+
+            alltimes = alltimes+lecture.length;//总次数
+            stu.alltimes = alltimes;
+            stu.guojiTimes = guojiTimes;//就业指导次数
+            this.users.push(stu);
+
+
+          })
+
+        })
+      }
 
     },
     mounted () {
