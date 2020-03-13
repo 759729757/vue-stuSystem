@@ -12,7 +12,7 @@
 
         <el-submenu  v-for="(item,index) in $router.options.routes" :key="item.path" :index="item.path" v-if="item.type == '管理端'">
           <template slot="title"><i :class="item.icon"></i> <strong style="color: #a0cfff">{{ item.name }}</strong></template>
-            <el-menu-item v-for="subitem in item.children" :index="item.path+'/'+subitem.path" :key="subitem.path">
+            <el-menu-item v-for="subitem in item.children" v-if="!subitem.hidden" :index="item.path+'/'+subitem.path" :key="subitem.path">
               <!--<router-link :to="item.path+subitem.path">-->
                 {{ subitem.name }}
               <!--</router-link>-->
@@ -80,7 +80,7 @@
 				//console.log('handleclose');
 			},
 			handleselect: function (url) {
-			  console.log(url)
+			  // console.log(url)
         this.$router.push({
           path:url
         })

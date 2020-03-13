@@ -38,16 +38,21 @@ var  getUrlStr = function(name){
 let code = getUrlStr('code');
 
 router.beforeEach((to, from, next) => {
+  let webTitle = to.name;
+  document.title = webTitle;
   if(to.path.indexOf('@admin') >= 0 ){
+    //登录到管理页面
     let admin = sessionStorage.getItem('admin');
     if(!admin && to.path!='/@adminLogin'){
     //  没登录，调到登录页面
       next({ path: '/@adminLogin' })
     }else{
+      console.log('目前处于管理页面',axios.defaults.headers)
       axios.defaults.headers.common['Authorization'] = admin;
       next();
     }
-  }else {
+  }
+  else{
     next();
   }
 })
@@ -60,6 +65,8 @@ function init () {
             console.log('登陆返回信息：',data)
             let { mess, status, token } = data.data;
             if (status !== 1) { //没有绑定微信的账号，做绑定处理
+              window.location.href='http://stusystem.dfi.ac.cn/stuInfoSystem/isbind.html';
+                resolve();
             }else {
               sessionStorage.setItem('user', token);
               axios.defaults.headers.common['Authorization'] = token;
@@ -87,7 +94,7 @@ init().then(res=>{
     router,
     components: { App },
     render: h => h(App),
-    template: '<App/>',
+    template: '<App/>'
   })
 })
 

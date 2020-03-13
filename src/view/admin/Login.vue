@@ -22,7 +22,7 @@
   export default {
     data() {
       return {
-        logining: false,
+      logining: false,
         ruleForm2: {
           account: '',
           checkPass: ''

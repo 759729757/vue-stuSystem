@@ -17,6 +17,16 @@ axios.interceptors.response.use(function (response) {
 //管理员登录
 export const adminLogin = params =>{ return axios.post(`${oldUrl}/admin/adminLogin`,params).then(res=>res.data) }
 
+//线上视频课程相关
+export const uploadCoureseVideoUrl = `${oldUrl}/admin/uploadVideo`;
+export const uploadCourese = params => { return axios.post(`${oldUrl}/admin/courese`, params).then(res => res.data); };
+export const editCourese = params => { return axios.post(`${oldUrl}/admin/editCourese`, params).then(res => res.data); };
+export const getCourese = params => { return axios.get(`${oldUrl}/admin/getCourese`, { params: params }); };
+export const delCourese = params => { return axios.get(`${oldUrl}/admin/delCourese`, { params: params }); };
+export const getCoureseType = params => { return axios.get(`${oldUrl}/admin/coureseType`, { params: params }); };
+export const editCoureseType = params => { return axios.post(`${oldUrl}/admin/coureseType`, params).then(res => res.data); };
+export const delCoureseType = params => { return axios.get(`${oldUrl}/admin/delCoureseType`, { params: params }); };
+
 //上传新闻图片
 export const uploadImageUrl = `${baseUrl}/photoLive/upload`;
 export const uploadImage = params => { return axios.post(`${baseUrl}/photoLive/upload`, params).then(res => res.data); };

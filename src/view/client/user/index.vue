@@ -42,6 +42,14 @@
          <a href="javascript:void(0);" @click="toLecture" >讲座考勤</a>
        </div>
      </div>
+     <div class="cells cells-bd">
+       <div class="cells-icon">
+         <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/video.png" alt="">
+       </div>
+       <div class="cells-text normal">
+         <a href="javascript:void(0);" @click="toCourese" >MOOC of Brand University</a>
+       </div>
+     </div>
      <!--<div class="cells cells-bd">-->
        <!--<div class="cells-icon">-->
          <!--<img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/zhiyuanshi.png" alt="">-->
@@ -94,6 +102,9 @@
         })
     },
     methods:{
+      toCourese:function(){
+        this.$router.push({ path: '/courese/' });
+      },
       toEquRecord:function () {
         this.$router.push({ path: '/equipment/equRecordList' });
       },

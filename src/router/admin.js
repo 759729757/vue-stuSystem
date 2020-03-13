@@ -16,6 +16,10 @@ import Statistics from '@/view/admin/record/lectureStatistics'
 import PersonMission from '@/view/admin/interchangeSpace/personMission'
 import MajorMission from '@/view/admin/interchangeSpace/majorMission'
 
+import Courese from '@/view/admin/courese/'
+import CoureseUpload from '@/view/admin/courese/upload'
+import CoureseType from '@/view/admin/courese/type'
+
 const routers_admin =[
 
   {
@@ -71,6 +75,19 @@ const routers_admin =[
     icon: 'fa fa-id-card-o',
     children:[
       {path:'', component:Activity, name:"近期活动"}
+    ]
+  },
+  {
+    path:'/@admin/courese',
+    name:'网课视频',
+    type:'管理端',
+    component:Admin,
+    icon: 'fa fa-id-card-o',
+    children:[
+      {path:'', component:Courese, name:"网课视频"},
+      {path:'upload', component:CoureseUpload, name:"上传视频"},
+      {path:'type', component:CoureseType, name:"视频类型"},
+      {path:'edit', component:CoureseUpload, name:"修改视频",hidden:true},
     ]
   },
   {

@@ -12,6 +12,10 @@ import EquRecord from '@/view/client/user/equRecord'
 import EquRecordList from '@/components/equRecordList'
 import Album from '@/view/client/album/index'
 import PhotoPreview from '@/view/client/album/photo-preview'
+import Course from '@/view/client/courese'
+import CourseRead from '@/view/client/courese/read'
+import CourseRecord from '@/view/client/courese/record'
+import CourseSuggest from '@/view/client/courese/suggest'
 import routers_admin from './admin'
 
 
@@ -53,6 +57,30 @@ export const routes = [
       component: PhotoPreview,
       iconCls: ''
     },
+    {
+      path: '/courese',
+      name: 'MOOC of Brand University',
+      component: Course,
+      iconCls: ''
+      },
+    {
+      path: '/courese/read',
+      name: 'MOOC of Brand University',
+      component: CourseRead,
+      iconCls: ''
+    },
+    {
+      path: '/courese/record',
+        name: 'MOOC of Brand University',
+      component: CourseRecord,
+      iconCls: ''
+    },
+  {
+    path: '/courese/suggest',
+    name: 'MOOC of Brand University',
+    component: CourseSuggest,
+    iconCls: ''
+  },
     {
       path: '/',
       name: '首页',

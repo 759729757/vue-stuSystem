@@ -5,17 +5,33 @@
     <meta name="renderer" content="webkit">
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>学生信息系统</title>
+    <title>中德合作办学项目----教学辅助平台</title>
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.css" ><!-- //WeChat CSS -->
     <style>
       ::-webkit-scrollbar{display: none;}
       html,body{height: 100%;margin: 0;}
       body{display: flex;flex-direction: row;justify-content: flex-start;}
-      #app{width: 100%;overflow-y: scroll;height: calc(100% - 50px);background: #ededed;/*padding-bottom: 51px;*/}
+      #app{width: 100%;overflow-y: scroll;/*height: calc(100% - 50px);padding-bottom: 51px;*/}
+      .loading-warp{    text-align: center; margin-top: 30%; position: relative;}
+      .loading-cover{}
+      .loading-img{animation: cover 1.5s 0s infinite ; width: 50px;}
+      @keyframes cover {
+        0%{transform:rotate(0deg);}
+        50%{transform:rotate(-180deg);}
+        100%{transform:rotate(-360deg);}
+      }
+
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="loading-warp">
+        <div class="loading-cover"></div>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAE60lEQVRoQ81aTXoaRxB9NZI/aWdyguBFArugE1g6gTVcwCiQddAJLJ3AeG2I8AU00gmCTmCyG5KF8QkCO+kLTOXrmQZmhu6Zbmj58yxF/9TrrnqvqloEx18nqJ8y+HcApwSqJMvzmJl6g2b4yfF2IFcLtoJq5QDH7wlo6dfkMSG6+Oj/M3a1rzMAndv6CITXZYYxeOYhOnMFwgmATlC/AvCuzPjN7zzu+5MT8/H6kW4A3NZmIHppYxAj8gf+33c2c1Rj9wYgghbAn7aGMPBp4IcF8WK2ogMAtS5A7822S41iPPSboQC/1+cAgK3/S3u/IwA7uRCY7/vNyXn6+DtBfJtvGNyQGjISGrLA0/XQn86eJQYE/x/i+F9bP4iAiz/8cCjm/Rb81GB4NwA1VOsI6gX4QhX0hS6UGHck6PGUQWMPyw8q/m4H9SEBb41BMM8X9FQVp5oI4NGXjWoXUebyJL9/IYBfg3rLA25WS+qYIwbKR1NTKk2ffue2dgeiNybgGZgu8XiSdqdCAHmBYua/Bs2J8pqFG0TsDYnoF60xzPOIqLtynVZQrx4CX0yM3xxiVj8KASS+efB5M5k/DPxJV7ehjIcumLv52xC352HZS7vAjhpy3fdDofzxV0qjEsQ5IxrbKKc0Lt5kgcexikXsUxCR2Gb1IwMgF7QiFR4t8XipozCbq1eNbQc/nxO8wGYdRtYLMgBUJ+JK8lVG7hIDaQLYciFVSiwif+CHr2xOyWasaRoer5miX2UMKPnckeTrA79ePWQem1CwKoPNuJDKJ12lvUW3Eu/LNCwBkWEfLQvJxVoAVZiing3z2LhOfqwsSXvEfJ4BwnxPFF3pKrhSGt3HqF3niuB+gWXFpOxcA9hSXWD4nBS6K7j8vBhAPudJDVL6navNi9aRFPs2m1rjoe+Ho/S8GICeytwV3zagRV3AwDt1hsq9dH1QDIB53m9OZHPKxoTdx5qoc1qNJQBNSvvMGqBmIrPaAMCZcKcYQJywsTdS8HA8aPfztJtpmZ3G8blmIRk0LQZXCDRbAMOhH07tTNhvtFV2Kr3ju9IBWdSbtWhkU2ALgKRUUd+KLrPoBIw8RNcmorLf+QN7uVCRHgggS9DJt3Cp9m1tXFiWrrNSagh7svVAcYf5m4havoxV3ypf9v1JT/yWL2hY6waKRtS+LqObr20QMM+ZuJVOMHM3oO8yP1dlJv3+NQNVAqaE5f0q3pLfuCEyYxGLqto6D6CgR7O5NhcnX/yiw72+P7k02ScDQCdo6X6QGAM+ePkf4es+Qd0Oaj0Cibc03WcUc1s0uurtiCsFeCauVQSMqn/J4Lslni5suxZmgSoCdLuVqEyny66qpH856vvh2XZeU6++YPwo/v6xGT6kfzcVrHwHQmWnkRIbSPw6Z5Jgbwi0bp0LHWHQ5aqlaLDeytZSNzIDUPoCmQS4DMzPFLuf6kvGFRRQmUkmDQUjAGUBt9qo7GQTRX96BRxXSlspcQ8oUdsiFzcEUNwCXODxBxHIhk2q2N3K48CMto0AiBPQPWKkA619W58SJYGr/zaGxSAYV7k2ypba7n0DqwXiWpXRkj4+YuJhWtZtbmC1pqRt8eYg3tqUausMQBndltWzRQ8kZWvrfjd2IdMNtO9lzHOi6NR1XeEcQBIvotfpdcU/fzDjKyh+Z+jaKrbJof0P+AHRT9HmnWwAAAAASUVORK5CYII="
+             class="loading-img">
+        <h4 style="color: #64af28;margin-top: 20px;"> 页面加载中...</h4>
+      </div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
   <script type="text/javascript" src="static/js/mobileBUGFix.mini.js"></script>
