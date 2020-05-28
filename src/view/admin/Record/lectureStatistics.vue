@@ -61,14 +61,14 @@
 </template>
 
 <script>
-  import { getOneUser } from '../../../../src/api/adminApi.js';
+  import { getAllStuInfo } from '../../../../src/api/adminApi.js';
   import { oldLecture,lecture } from '../../../../src/api/api.js';
   export default {
     name: 'lectureStatistics',
     data(){
       return{
         filter: {
-          name: '陈',page:0,grade:'2019'
+          name: '',page:0,grade:''
         },
         loading:false,
         count:0,
@@ -90,12 +90,12 @@
 //获取列表
       fetch: function () {
         this.loading = true;
-        getOneUser(this.filter).then((res)=>{
-          console.log(res)
+        getAllStuInfo(this.filter).then((res)=>{
+          console.log('getAllStuInfo',res)
           this.loading = false;
-          this.count = res.data.count;
+          this.count = res.data.data.length;
           // this.users = res.data.users;
-          let {users} = res.data;
+          let users = res.data.data;
 
           let page=0;const limit = 20;
 
@@ -105,6 +105,7 @@
         })
       },
       acount:function (stu) {
+        stu.stuNum = stu.stuNum.replace(/a$/,'');
         let alltimes = 0,jiuyeTimes = 0,guojiTimes =0;
         oldLecture({stuNum:stu.stuNum}).then(res =>{
           alltimes = res.data.times;

@@ -2,7 +2,7 @@
   <section v-infinite-scroll="load" infinite-scroll-immediate="false">
 
     <div class="banner">
-      <img :src="'http://stusystem.dfi.ac.cn/stuInfoSystem/images/news/'+active.banner" alt="">
+      <img :src="'http://de.bnuz.edu.cn/stuInfoSystem/images/news/'+active.banner" alt="">
     </div>
     <div class="content" >
       <div class="title-warp">
@@ -122,7 +122,7 @@
             return
           }
 
-          let imgUrl = 'http://stusystem.dfi.ac.cn/stuInfoSystem/images/';
+          let imgUrl = 'http://de.bnuz.edu.cn/stuInfoSystem/images/';
           photo = photo.map( item => {
             let img={};
             img.url = imgUrl + 'livePhoto_compress/' + item;

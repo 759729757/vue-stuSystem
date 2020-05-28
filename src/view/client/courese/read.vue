@@ -112,7 +112,7 @@
           fluid : true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources : [ {
             type : "",
-            src : 'http://stusystem.dfi.ac.cn/stuinfosystem/baVideo.mp4'//url地址
+            src : 'http://de.bnuz.edu.cn/stuinfosystem/baVideo.mp4'//url地址
           } ],
           poster : "", //你的封面地址
           // width: document.documentElement.clientWidth,

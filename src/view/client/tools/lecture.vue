@@ -1,7 +1,7 @@
 <template>
   <section class="cover">
     <div class="toptitle">
-      <img class="logoimg" src="http://stusystem.dfi.ac.cn/stuInfoSystem/image/balogo.png">
+      <img class="logoimg" src="http://de.bnuz.edu.cn/stuInfoSystem/image/balogo.png">
       <p class="title">讲座考勤查询</p>
     </div>
 
@@ -19,7 +19,7 @@
     <transition name="fade">
       <div class="info toggle" v-if="lectureRecords.name">
         <p class="icon" @click="lectureRecords={};invalidRecord=false;nearRecord=false">
-          <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/image/icon_up.png" class="back">
+          <img src="http://de.bnuz.edu.cn/stuInfoSystem/image/icon_up.png" class="back">
         </p>
         <ul >
           <li>
@@ -219,7 +219,7 @@
   .cover{
     height: 100%;overflow-y: scroll;
     width: 100%;
-    background: url("http://stusystem.dfi.ac.cn/stuInfoSystem/image/babg.jpg")no-repeat;padding-top: 1px;
+    background: url("http://de.bnuz.edu.cn/stuInfoSystem/image/babg.jpg")no-repeat;padding-top: 1px;
     background-size: cover;font-family: "Microsoft YaHei";}
   /*body{background: #64af28;}*/
   body{padding-bottom: 50px;}
@@ -254,7 +254,7 @@
   .back{
     width: 2.2em;
     height: 1em;
-    background: url("http://stusystem.dfi.ac.cn/stuInfoSystem/image/icon_up.png");
+    background: url("http://de.bnuz.edu.cn/stuInfoSystem/image/icon_up.png");
     display: inline-block;
     background-size: cover;
   }

@@ -18,7 +18,7 @@
         <div class="container">
           <div class="cells cells-bd">
             <div class="cells-icon">
-              <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/touxiang.png" alt="">
+              <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/touxiang.png" alt="">
             </div>
             <div class="cells-text normal ">
               <a href="javascript:void(0);">点此添加</a>
@@ -33,20 +33,20 @@
           <div class="cells cells-list">
             <div class="cells ">
               <div class="cells-icon">
-                <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/touxiang.png" alt="">
+                <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/touxiang.png" alt="">
               </div>
               <div class="cells-text normal ">
                 <strong>已录入本人面部照片：</strong>
               </div>
             </div>
             <div class="cells-grid" v-for="item in face_photo"
-                 :style="'background-image: url(http://stusystem.dfi.ac.cn/stuInfoSystem/images/userFacePic/'+ item + ')'"></div>
+                 :style="'background-image: url(http://de.bnuz.edu.cn/stuInfoSystem/images/userFacePic/'+ item + ')'"></div>
           </div>
 
 
           <div class="cells" v-if="face_photo.length < 3" @click="record=true">
             <div class="cells-icon">
-              <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/add.png" alt="">
+              <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/add.png" alt="">
             </div>
             <div class="cells-text normal ">
               <a href="javascript:void(0);">继续添加</a>
@@ -102,7 +102,7 @@
             </span>
           </div>
           <span class="before"></span>
-          <img id="showPic" src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/headIcon.svg" />
+          <img id="showPic" src="http://de.bnuz.edu.cn/stuInfoSystem/images/headIcon.svg" />
           <span class="after"></span>
         </label>
 

@@ -91,7 +91,7 @@
     <!--分页-->
     <el-pagination
       :current-page.sync="filter.page"
-      :page-size="20" @current-change="fetch"
+      :page-size="15" @current-change="fetch"
       layout="total, prev, pager, next"
       :total="amount">
     </el-pagination>
@@ -170,7 +170,7 @@
       },
       fetch:function () {
         getLectureRecord(this.filter).then(res=>{
-          console.log(res)
+          console.log('getLectureRecord',res)
           this.amount = res.data.amount;
           this.lectureArr = res.data.lecture
         })

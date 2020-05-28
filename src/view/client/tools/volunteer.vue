@@ -1,7 +1,7 @@
 <template>
   <section class="cover">
       <div class="toptitle">
-        <!--<img class="logoimg" src="http://stusystem.dfi.ac.cn/image/balogo.png">-->
+        <!--<img class="logoimg" src="http://de.bnuz.edu.cn/image/balogo.png">-->
         <h2 class="title">志愿时查询</h2>
       </div>
 
@@ -15,7 +15,7 @@
 
       <div class="info toggle" hidden>
         <p class="icon" onclick="$('.toggle').toggle('fast');">
-          <img src="http://stusystem.dfi.ac.cn/image/icon_up.png" class="back">
+          <img src="http://de.bnuz.edu.cn/image/icon_up.png" class="back">
         </p>
         <ul >
           <li>
@@ -37,9 +37,9 @@
 
       <div class="sendApply" hidden>
         <p class="icon" onclick="$('.sendApply').toggle('fast');">
-          <img src="http://stusystem.dfi.ac.cn/image/icon_up.png" class="back">
+          <img src="http://de.bnuz.edu.cn/image/icon_up.png" class="back">
         </p>
-        <form method="post"  action="http://stusystem.dfi.ac.cn/stuInfoSystem/volunteerTime/sendApply" enctype="application/x-www-form-urlencoded">
+        <form method="post"  action="http://de.bnuz.edu.cn/stuInfoSystem/volunteerTime/sendApply" enctype="application/x-www-form-urlencoded">
           <input type="text" name="stuName" placeholder="请输入姓名(必填)">
           <input type="text" name="stuNum" placeholder="请输入学号(必填)">
           <input type="text" name="phone" placeholder="联系方式(必填)">
@@ -92,7 +92,7 @@
           var alltimes = 0,sixiuScore='';
           if($('#schoolNum').val()){
             $.ajax({
-              url:'http://stusystem.dfi.ac.cn/stuInfoSystem/volunteerTime/checkOne',
+              url:'http://de.bnuz.edu.cn/stuInfoSystem/volunteerTime/checkOne',
               type:'GET',
               data:{stuNum:Number($('#schoolNum').val())},
               cache:false,
@@ -140,7 +140,7 @@
     height: 100%;
     overflow-y: scroll;
     width: 100%;
-    background: url("http://stusystem.dfi.ac.cn/stuInfoSystem/image/babg.jpg")no-repeat;padding-top: 1px;
+    background: url("http://de.bnuz.edu.cn/stuInfoSystem/image/babg.jpg")no-repeat;padding-top: 1px;
     background-size: cover;font-family: "Microsoft YaHei";}
   /*body{background: #64af28;}*/
   input{
@@ -174,7 +174,7 @@
   .back{
     width: 2.2em;
     height: 1em;
-    background: url("http://stusystem.dfi.ac.cn/image/icon_up.png");
+    background: url("http://de.bnuz.edu.cn/image/icon_up.png");
     display: inline-block;
     background-size: cover;
   }

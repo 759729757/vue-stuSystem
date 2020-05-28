@@ -34,7 +34,7 @@
       >
         <video width="148" class="avatar" controls="controls"
                v-if="videoUrl"
-               :src="'http://stusystem.dfi.ac.cn/stuInfoSystem/courese/video/'+videoUrl"
+               :src="'http://de.bnuz.edu.cn/stuInfoSystem/courese/video/'+videoUrl"
                >
           您的浏览器不支持视频播放
         </video>

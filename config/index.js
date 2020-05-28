@@ -10,8 +10,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/stuInfoSystem':{
-        target: "http://stusystem.dfi.ac.cn/stuinfosystem/stuEduSystem",
-        changeOrigin:true,
+        target: "http://de.bnuz.edu.cn/stuInfoSystem/stuEduSystem",
+        changeOrigin:true, //可否跨域
         pathRewrite:{
           '^/stuInfoSystem':''
         }

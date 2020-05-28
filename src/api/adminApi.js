@@ -50,6 +50,7 @@ export const urgeEquipment = params =>{ return axios.get(`${oldUrl}/admin/urgeEq
 
 //人员相关
 export const getOneUser = params =>{ return axios.get(`${oldUrl}/admin/fetchStuInfo`,{params:params}); };
+export const getAllStuInfo = params =>{ return axios.get(`${oldUrl}/admin/getAllStuInfo`,{params:params}); };
 export const delOneUser = params =>{ return axios.get(`${oldUrl}/admin/deleteOneUser`,{params:params}); };
 export const updateUser = params =>{ return axios.get(`${oldUrl}/admin/updateUser`,{params:params}); }
 export const headImg = `${oldUrl}/images/userFacePic/`

@@ -6,7 +6,7 @@
          <img v-if="avatarUrl" :src="avatarUrl">
          <p style="text-align: center;">
            <a style="font-size: xx-small;"
-              href="javascript:window.parent.window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx278a74864dbbeadd&redirect_uri=http://stusystem.dfi.ac.cn/interchangeSpace/recordinfo&response_type=code&scope=snsapi_userinfo#wechat_redirect'">
+              href="javascript:window.parent.window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx278a74864dbbeadd&redirect_uri=http://de.bnuz.edu.cn/interchangeSpace/recordinfo&response_type=code&scope=snsapi_userinfo#wechat_redirect'">
              更新头像信息
            </a>
          </p>
@@ -20,7 +20,7 @@
      </div>
      <div class="cells cells-bd">
        <div class="cells-icon">
-         <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/shebei.png" alt="">
+         <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/shebei.png" alt="">
        </div>
        <div class="cells-text normal">
          <a href="javascript:void(0)" @click="toEquRecord">设备借用记录</a>
@@ -28,7 +28,7 @@
      </div>
      <div class="cells cells-bd">
        <div class="cells-icon">
-         <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/touxiang.png" alt="">
+         <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/touxiang.png" alt="">
        </div>
        <div class="cells-text normal">
          <a href="javascript:void(0)" @click="toFaceReco">面部识别</a>
@@ -36,7 +36,7 @@
      </div>
      <div class="cells cells-bd">
        <div class="cells-icon">
-         <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/kaoqing.png" alt="">
+         <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/kaoqing.png" alt="">
        </div>
        <div class="cells-text normal">
          <a href="javascript:void(0);" @click="toLecture" >讲座考勤</a>
@@ -44,7 +44,7 @@
      </div>
      <div class="cells cells-bd">
        <div class="cells-icon">
-         <img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/video.png" alt="">
+         <img src="http://de.bnuz.edu.cn/stuInfoSystem/images/video.png" alt="">
        </div>
        <div class="cells-text normal">
          <a href="javascript:void(0);" @click="toCourese" >MOOC of Brand University</a>
@@ -52,7 +52,7 @@
      </div>
      <!--<div class="cells cells-bd">-->
        <!--<div class="cells-icon">-->
-         <!--<img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/zhiyuanshi.png" alt="">-->
+         <!--<img src="http://de.bnuz.edu.cn/stuInfoSystem/images/zhiyuanshi.png" alt="">-->
        <!--</div>-->
        <!--<div class="cells-text normal">-->
          <!--<a href="javascript:void(0);" @click="toVolunteer" >志愿时查询</a>-->
@@ -60,7 +60,7 @@
      <!--</div>-->
      <!--<div class="cells">-->
        <!--<div class="cells-icon">-->
-         <!--<img src="http://stusystem.dfi.ac.cn/stuInfoSystem/images/yijian.png" alt="">-->
+         <!--<img src="http://de.bnuz.edu.cn/stuInfoSystem/images/yijian.png" alt="">-->
        <!--</div>-->
        <!--<div class="cells-text normal">-->
          <!--<a href="javascript:void(0);" @click="toOptions" >意见反馈</a>-->
