@@ -8,6 +8,7 @@
         <el-table-column prop="stuName" label="姓名" width="100" sortable>			</el-table-column>
 
         <el-table-column prop="stuNum" label="学号" width="150"  sortable>				</el-table-column>
+        <el-table-column prop="name" label="项目名" width="150" sortable>				</el-table-column>
 
         <el-table-column prop="detail" label="详情" width="250" sortable>				</el-table-column>
 
@@ -22,7 +23,16 @@
             </el-link>
           </template>
         </el-table-column>
-        <el-table-column prop="alltimes" label="删除" width="100" align="center" sortable>        </el-table-column>
+        <el-table-column prop="alltimes" label="删除" width="100" align="center" sortable>
+          <template slot-scope="scope">
+            <el-link
+              @click="del(scope.row)"
+              type="info" :underline="false"
+              disable-transitions>
+              删除
+            </el-link>
+          </template>
+        </el-table-column>
       </el-table>
     </el-main>
 
@@ -34,13 +44,13 @@
       >
       <el-form :model="editItem" status-icon label-width="100px" class="demo-ruleForm">
         <el-form-item label="姓名" prop="stuName">
-          <el-input type="text" v-model="editItem.stuName" autocomplete="off"></el-input>
+          <el-input type="text" v-model="editItem.stuName" autocomplete="off" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="学号" prop="stuNum">
-          <el-input type="text" v-model="editItem.stuNum" autocomplete="off"></el-input>
+          <el-input type="text" v-model="editItem.stuNum" autocomplete="off" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="项目" prop="name">
-          <el-input v-model.text="editItem.name"></el-input>
+          <el-input type="text" v-model.text="editItem.name"></el-input>
         </el-form-item>
         <el-form-item label="详情" prop="detail">
           <el-input type="textarea" v-model.text="editItem.detail"></el-input>
@@ -64,15 +74,10 @@
         <el-form-item label="意见" prop="advise">
           <el-input v-model.text="editItem.advise"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submit" >提交</el-button>
-        </el-form-item>
       </el-form>
-
-
-      <span slot="footer" class="dialog-footer">
+      <span slot="footer" class="dialog-footer" v-if="editItem.status == '0' ">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="submit" >确 定</el-button>
       </span>
     </el-dialog>
 
@@ -97,23 +102,50 @@
       }
     },
     methods:{
-      submit:function(){
-        this.$confirm(`是否提交记录`, '提示', {
+      del:function(item){
+        this.$confirm(`确定删除 ${item.stuName} 该条数据吗`,'请确认',{
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          approvalVolunteerTime(
+          delVolunteerTime(
             {
-              _id:this.editItem._id,
-              status:this.isPass,
-              advise:this.editItem.advise
+              _id:this.editItem._id
             }
-            ).then(res=>{
+          ).then(res=>{
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+            this.dialogVisible = false;
+            this.editItem = {};//初始化设置
+            this.fetch();
+          })
+        })
+      },
+      submit:function(){
+        if(!this.isPass){
+          this.$message({
+            type:'warning',
+            message:'请选择是否审批',
+            duration:2000
+          })
+          return
+        }
+        this.$confirm(`提交后无法修改，请确认`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.editItem.status = this.isPass;
+          approvalVolunteerTime(this.editItem).then(res=>{
             this.$message({
               type: 'success',
               message: '发送成功!'
             });
+            this.dialogVisible = false;
+            this.editItem = {};//初始化设置
+            this.fetch();
           })
         })
       },
@@ -121,6 +153,7 @@
         console.log(item)
         // if(item.status !=='0')return;
         this.editItem = item;
+        this.isPass = this.editItem.status;
         this.dialogVisible= true;
       },
       queryMajor(queryString, cb) {
