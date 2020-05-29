@@ -73,4 +73,8 @@ export const addOnePermission = params => { return axios.post(`${interchangeUrl}
 export const addOnePermissionMajor = params => { return axios.post(`${interchangeUrl}/admin/addOnePermissionMajor`, params).then(res => res.data); };
 export const queryStuInfo = params => { return axios.get(`${oldUrl}/admin/queryStuInfo`,{params:params}); }
 
+//志愿时
+export const getVolunteerTime = params =>{ return axios.get(`${oldUrl}/volunteerTime/getApply`,{params:params}); }
+export const delVolunteerTime = params =>{ return axios.get(`${oldUrl}/volunteerTime/delete`,{params:params}); }
+export const approvalVolunteerTime = params =>{ return axios.get(`${oldUrl}/volunteerTime/approval`,{params:params}); }
 

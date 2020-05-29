@@ -20,6 +20,9 @@ import Courese from '@/view/admin/courese/'
 import CoureseUpload from '@/view/admin/courese/upload'
 import CoureseType from '@/view/admin/courese/type'
 
+import VolunteerApprove from '@/view/admin/Record/volunteerStatistics'
+
+
 const routers_admin =[
 
   {
@@ -56,8 +59,8 @@ const routers_admin =[
     ]
   },
   {
-    path:'/@admin/record',
-    name:'讲座/志愿 记录',
+    path:'/@admin/lecture',
+    name:'讲座记录',
     type:'管理端',
     component:Admin,
     icon: 'fa fa-id-card-o',
@@ -65,6 +68,18 @@ const routers_admin =[
       {path:'', component:SendLecture, name:"上传讲座记录"},
       {path:'editLecture', component:EditLecture, name:"编辑考情数据"},
       {path:'statistics', component:Statistics, name:"讲座记录统计"}
+    ]
+  },
+  {
+    path:'/@admin/volunteer',
+    name:'志愿时记录',
+    type:'管理端',
+    component:Admin,
+    icon: 'fa fa-id-card-o',
+    children:[
+      {path:'', component:SendLecture, name:"上传志愿时记录"},
+      {path:'VolunteerApprove', component:VolunteerApprove, name:"志愿时审批"},
+      {path:'statistics', component:Statistics, name:"志愿时统计"}
     ]
   },
   {

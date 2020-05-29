@@ -9,7 +9,7 @@ import router from './router'
 import $ from 'jquery'
 import 'font-awesome/css/font-awesome.min.css'
 import 'element-ui/lib/theme-chalk/index.css'
-
+import JsonExcel from 'vue-json-excel'
 
 import axios from 'axios';
 import {loginByCode} from './api/api'
@@ -23,6 +23,7 @@ axios.defaults.headers.get['Content-Type'] = 'application/json';
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueRouter)
+Vue.component('downloadExcel', JsonExcel)
 
 
 var  getUrlStr = function(name){

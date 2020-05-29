@@ -51,3 +51,6 @@ export const applyList = params => { return axios.get( `${baseUrl}/record/equRec
 
 //活动照片直播~
 export const fetchPhoto = params =>{ return axios.get(`${baseUrl}/photoLive/`,{params:params} ); }
+
+
+
