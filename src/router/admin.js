@@ -20,7 +20,8 @@ import Courese from '@/view/admin/courese/'
 import CoureseUpload from '@/view/admin/courese/upload'
 import CoureseType from '@/view/admin/courese/type'
 
-import VolunteerApprove from '@/view/admin/Record/volunteerStatistics'
+import VolunteerApprove from '@/view/admin/Record/volunteerApprove'
+import VolunteerStatistics from '@/view/admin/Record/volunteerStatistics'
 
 
 const routers_admin =[
@@ -79,7 +80,7 @@ const routers_admin =[
     children:[
       {path:'', component:SendLecture, name:"上传志愿时记录"},
       {path:'VolunteerApprove', component:VolunteerApprove, name:"志愿时审批"},
-      {path:'statistics', component:Statistics, name:"志愿时统计"}
+      {path:'statistics', component:VolunteerStatistics, name:"志愿时统计"}
     ]
   },
   {

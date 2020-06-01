@@ -1,161 +1,119 @@
 <template>
   <el-container>
+    <!--工具条-->
+    <el-header :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-form :inline="true" :model="filter">
+        <el-form-item>
+          <el-input v-model="filter.name" placeholder="姓名"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="filter.stuNum" placeholder="学号"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <!--<el-input v-model="filter.grade" placeholder="年级"></el-input>-->
+          <el-autocomplete
+            class="inline-input"
+            v-model="filter.grade"
+            :fetch-suggestions="queryGrade"
+            placeholder="年级"
+          ></el-autocomplete>
+        </el-form-item>
+        <el-form-item>
+          <el-autocomplete
+            class="inline-input"
+            v-model="filter.major"
+            :fetch-suggestions="queryMajor"
+            placeholder="专业"
+          ></el-autocomplete>
+          <!--<el-input v-model="filter.major" placeholder="专业"></el-input>-->
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" v-on:click="fetch">查询</el-button>
+        </el-form-item>
+        <el-form-item v-if="users.length">
+          <download-excel
+            class = "export-excel-wrapper"
+            :data = "users"
+            :fields = "json_fields"
+            :name = "excelName">
+            <!-- 上面可以自定义自己的样式，还可以引用其他组件button -->
+            <el-button type="primary" size="small">导出EXCEL</el-button>
+          </download-excel>
+        </el-form-item>
+      </el-form>
+    </el-header>
+
     <!--列表-->
     <el-main>
+      <el-tag type="info" v-if="count">共找到 {{count}} 人</el-tag>
       <el-table :data="users" highlight-current-row v-loading="loading" height="80vh" stripe>
         <el-table-column type="index" width="60">				</el-table-column>
 
-        <el-table-column prop="stuName" label="姓名" width="100" sortable>			</el-table-column>
+        <el-table-column prop="name" label="姓名" width="100" sortable>			</el-table-column>
 
         <el-table-column prop="stuNum" label="学号" width="150"  sortable>				</el-table-column>
-        <el-table-column prop="name" label="项目名" width="150" sortable>				</el-table-column>
 
-        <el-table-column prop="detail" label="详情" width="250" sortable>				</el-table-column>
+        <el-table-column prop="grade" label="年级" width="100" sortable>				</el-table-column>
 
-        <el-table-column prop="score" label="申请分数" width="100" align="center" sortable>        </el-table-column>
+        <el-table-column prop="guojiTimes" label="志愿时数" width="150" sortable>        </el-table-column>
 
-        <el-table-column prop="status" label="状态" width="100" align="center" sortable>
-          <template slot-scope="scope">
-            <el-link
-              @click="setStatus(scope.row)"
-              :type="status[scope.row.status]" :underline="false"
-              disable-transitions>{{ statusText[scope.row.status] }}
-            </el-link>
-          </template>
-        </el-table-column>
-        <el-table-column prop="alltimes" label="删除" width="100" align="center" sortable>
-          <template slot-scope="scope">
-            <el-link
-              @click="del(scope.row)"
-              type="info" :underline="false"
-              disable-transitions>
-              删除
-            </el-link>
-          </template>
-        </el-table-column>
+
+
       </el-table>
     </el-main>
 
 
-    <el-dialog
-      title="管理员审批"
-      :visible.sync="dialogVisible"
-      width="50%"
-      >
-      <el-form :model="editItem" status-icon label-width="100px" class="demo-ruleForm">
-        <el-form-item label="姓名" prop="stuName">
-          <el-input type="text" v-model="editItem.stuName" autocomplete="off" :disabled="true"></el-input>
-        </el-form-item>
-        <el-form-item label="学号" prop="stuNum">
-          <el-input type="text" v-model="editItem.stuNum" autocomplete="off" :disabled="true"></el-input>
-        </el-form-item>
-        <el-form-item label="项目" prop="name">
-          <el-input type="text" v-model.text="editItem.name"></el-input>
-        </el-form-item>
-        <el-form-item label="详情" prop="detail">
-          <el-input type="textarea" v-model.text="editItem.detail"></el-input>
-        </el-form-item>
-        <el-form-item label="申请学分" prop="score">
-          <el-input v-model.text="editItem.score"></el-input>
-        </el-form-item>
-        <el-form-item label="联系方式" prop="phone">
-          <el-input v-model.text="editItem.phone"></el-input>
-        </el-form-item>
-        <el-form-item label="凭证" prop="photo">
-          <span v-if="!editItem.photo">暂无</span>
-          <a v-else :href="'http://de.bnuz.edu.cn/stuInfoSystem/volunteerPhotos/'+ editItem.photo " target="_blank">
-            <img class="photo"  :src="'http://de.bnuz.edu.cn/stuInfoSystem/volunteerPhotos/'+ editItem.photo " alt="">
-          </a>
-        </el-form-item>
-        <el-form-item label="审批" prop="status">
-          <el-radio v-model="isPass" label="1">通过</el-radio>
-          <el-radio v-model="isPass" label="2">不通过</el-radio>
-        </el-form-item>
-        <el-form-item label="意见" prop="advise">
-          <el-input v-model.text="editItem.advise"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer" v-if="editItem.status == '0' ">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submit" >确 定</el-button>
-      </span>
-    </el-dialog>
+
 
   </el-container>
 
 </template>
 
 <script>
-  import { getVolunteerTime,delVolunteerTime,approvalVolunteerTime } from '../../../../src/api/adminApi.js';
-  import { oldLecture,lecture } from '../../../../src/api/api.js';
+  import { getAllStuInfo ,volunteerTimeCheckOne } from '../../../../src/api/adminApi.js';
   export default {
     name: 'lectureStatistics',
     data(){
       return{
-        loading:false,dialogVisible:false,
+        filter: {
+          name: '',page:0,grade:''
+        },
+        loading:false,
         count:0,
         users:[],
-        editItem:{},//即将修改的数据
-        status : ['info','success','danger'],
-        statusText :['审批','已通过','不通过'],
-        isPass:'',//审批是否通过。1是通过，2不通过
+        restaurantsMajor:[{value:'中德合作办学项目'}],//专业内容提示
+        restaurantsGrade:[{value:'2016'},{value:'2017'},{value:'2018'},{value:'2019'}],//专业内容提示
+        excelName:'设计学院讲座记录统计（'+new Date().toDateString()+'）.xls',
+
+        json_fields: {
+          "姓名": "name",    //常规字段
+          "学号": "stuNum", //支持嵌套属性
+          "年级": "grade", //支持嵌套属性
+          "专业": "major", //支持嵌套属性
+          "国际设计与创新趋势（中德）": "guojiTimes", //支持嵌套属性
+          "就业指导（其他）": "alltimes", //支持嵌套属性
+          // "头部-损坏区域代码": {
+          //   field: "phone.landline",
+          //   //自定义回调函数
+          //   callback: value => {
+          //     return `损坏区域代码 - ${value}`;
+          //   }
+          // }
+        },
+        json_meta: [
+          [
+            {
+              " key ": " charset ",
+              " value ": " utf- 8 "
+            }
+          ]
+        ]
+
+
       }
     },
     methods:{
-      del:function(item){
-        this.$confirm(`确定删除 ${item.stuName} 该条数据吗`,'请确认',{
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          delVolunteerTime(
-            {
-              _id:this.editItem._id
-            }
-          ).then(res=>{
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-            this.dialogVisible = false;
-            this.editItem = {};//初始化设置
-            this.fetch();
-          })
-        })
-      },
-      submit:function(){
-        if(!this.isPass){
-          this.$message({
-            type:'warning',
-            message:'请选择是否审批',
-            duration:2000
-          })
-          return
-        }
-        this.$confirm(`提交后无法修改，请确认`, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.editItem.status = this.isPass;
-          approvalVolunteerTime(this.editItem).then(res=>{
-            this.$message({
-              type: 'success',
-              message: '发送成功!'
-            });
-            this.dialogVisible = false;
-            this.editItem = {};//初始化设置
-            this.fetch();
-          })
-        })
-      },
-      setStatus:function(item){
-        console.log(item)
-        // if(item.status !=='0')return;
-        this.editItem = item;
-        this.isPass = this.editItem.status;
-        this.dialogVisible= true;
-      },
       queryMajor(queryString, cb) {
         // 调用 callback 返回建议列表的数据
         cb(this.restaurantsMajor);
@@ -168,33 +126,42 @@
       fetch: function () {
         this.loading = true;
         this.users=[];
-        getVolunteerTime(this.filter).then((res)=>{
-          console.log('getVolunteerTime',res)
-          this.count = res.data.length;
-          this.users = res.data;
-          let users = res.data;
+        getAllStuInfo(this.filter).then((res)=>{
+          console.log('getAllStuInfo',res)
+          this.count = res.data.data.length;
+          // this.users = res.data.users;
+          let users = res.data.data;
 
           let page=0;const limit = 20;
 
+          //找不到数据
           if(!users.length){
             this.$message({
               type:'warning',
               message:'找不到数据'
             })
+            this.loading = false;
           }
-          this.loading = false;
+
+          for(var i=0;i<users.length;i++){
+            this.acount(users[i]);
+          }
         })
       },
-
+      //计数
+      acount:function (stu) {
+        stu.stuNum = stu.stuNum.replace(/a$/,'');
+        let alltimes = 0,jiuyeTimes = 0,guojiTimes =0;
+        volunteerTimeCheckOne
+      }
 
     },
     mounted () {
-      this.fetch()
+
     }
   }
 </script>
 
 <style scoped>
-  .photo{max-width: 100%;}
 
 </style>

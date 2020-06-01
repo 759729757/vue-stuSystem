@@ -77,4 +77,5 @@ export const queryStuInfo = params => { return axios.get(`${oldUrl}/admin/queryS
 export const getVolunteerTime = params =>{ return axios.get(`${oldUrl}/volunteerTime/getApply`,{params:params}); }
 export const delVolunteerTime = params =>{ return axios.get(`${oldUrl}/volunteerTime/delete`,{params:params}); }
 export const approvalVolunteerTime = params =>{ return axios.get(`${oldUrl}/volunteerTime/approval`,{params:params}); }
+export const volunteerTimeCheckOne = params =>{ return axios.get(`${oldUrl}/volunteerTime/checkOne`,{params:params}); }
 
